@@ -11,7 +11,7 @@ public class CommandService(ICommandBus commandBus, QueryService queryService)
 {
     public async Task CreateAccount(Account account)
     {
-        await commandBus.PublishAsync(new AccountCreatedCommand(AccountId.New, account), CancellationToken.None)
+        await commandBus.PublishAsync(new AccountCreatedCommand(new  AccountId(account.Id), account), CancellationToken.None)
             .ConfigureAwait(false);
     }
 
@@ -19,7 +19,7 @@ public class CommandService(ICommandBus commandBus, QueryService queryService)
     {
         await commandBus.PublishAsync(
                 new DepositCommand(
-                    new AccountId(account.AccountId),
+                    new AccountId(account.Id),
                     TransferId.New,
                     account.Amount),
                 CancellationToken.None)
@@ -30,7 +30,7 @@ public class CommandService(ICommandBus commandBus, QueryService queryService)
     {
         await commandBus.PublishAsync(
                 new WithdrawCommand(
-                    new AccountId(account.AccountId),
+                    new AccountId(account.Id),
                     TransferId.New,
                     account.Amount),
                 CancellationToken.None)

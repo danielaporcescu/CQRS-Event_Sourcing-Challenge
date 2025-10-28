@@ -24,7 +24,7 @@ namespace BankApiTests.UnitTests
         {
             var command = new AccountCreatedCommand(
                 _aggregate.Id,
-                new Account(firstName: "Alice", lastName: "Doe", amount: 500, currency: "USD"));
+                new Account(AccountId.New.ToString(), "Alice", "Doe",  500, "USD"));
 
             var result = await _handler.ExecuteCommandAsync(_aggregate, command, CancellationToken.None);
 
@@ -37,7 +37,7 @@ namespace BankApiTests.UnitTests
         {
             var command = new AccountCreatedCommand(
                 _aggregate.Id,
-                new Account(firstName: "Bob", lastName: "Smith", amount: -100, currency: "USD"));
+                new Account(AccountId.New.ToString(), "Bob", "Smith",  -100, "USD"));
 
             var result = await _handler.ExecuteCommandAsync(_aggregate, command, CancellationToken.None);
 
@@ -50,7 +50,7 @@ namespace BankApiTests.UnitTests
         {
             var command = new AccountCreatedCommand(
                 _aggregate.Id,
-                new Account(firstName: "", lastName: "Smith", amount: 100, currency: "EUR"));
+                new Account(AccountId.New.ToString(), "", "Smith",  100, "EUR"));
 
             var result = await _handler.ExecuteCommandAsync(_aggregate, command, CancellationToken.None);
 
@@ -63,7 +63,7 @@ namespace BankApiTests.UnitTests
         {
             var command = new AccountCreatedCommand(
                 _aggregate.Id,
-                new Account(firstName: "John", lastName: "", amount: 100, currency: "EUR"));
+                new Account(AccountId.New.ToString(), "John", "",  100, "EUR"));
 
             var result = await _handler.ExecuteCommandAsync(_aggregate, command, CancellationToken.None);
 
@@ -75,7 +75,7 @@ namespace BankApiTests.UnitTests
         {
             var command = new AccountCreatedCommand(
                 _aggregate.Id,
-                new Account(firstName: "Richie", lastName: "Rich", amount: 1_000_000_000, currency: "USD"));
+                new Account(AccountId.New.ToString(), "Richie", "Rich",  1_000_000_000, "USD"));
 
             var result = await _handler.ExecuteCommandAsync(_aggregate, command, CancellationToken.None);
 
@@ -87,7 +87,7 @@ namespace BankApiTests.UnitTests
         {
             var command = new AccountCreatedCommand(
                 _aggregate.Id,
-                new Account(firstName: "Parallel", lastName: "User", amount: 50, currency: "GBP"));
+                new Account(AccountId.New.ToString(), "Parallel", "User",  50, "GBP"));
 
             var tasks = new[]
             {

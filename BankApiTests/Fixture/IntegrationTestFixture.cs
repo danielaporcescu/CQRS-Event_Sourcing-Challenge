@@ -47,15 +47,15 @@ namespace BankApiTests.Fixture
             await _postgresAwait;
         }
         
-        // public void ClearEnvironment()
-        // {
-        //     DatabaseUtils.ExecuteNonQuery("delete from \"ReadModel-Account\";");
-        //     DatabaseUtils.ExecuteNonQuery("delete from eventflow;");
-        // }
+        public void ClearEnvironment()
+        {
+            DatabaseUtils.ExecuteNonQuery("delete from \"ReadModel-Account\";");
+            DatabaseUtils.ExecuteNonQuery("delete from eventflow;");
+        }
         
         public void Dispose()
         {
-            _hostRunner.Dispose();
+            // _hostRunner.Dispose();
             CastAndDispose(_postgreSqlContainer);
             return;
 

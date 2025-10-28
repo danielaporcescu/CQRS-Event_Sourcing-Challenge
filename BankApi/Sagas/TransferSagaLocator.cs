@@ -4,7 +4,7 @@ using EventFlow.Sagas;
 
 namespace BankApi.Sagas;
 
-public abstract class TransferSagaLocator : ISagaLocator
+public class TransferSagaLocator : ISagaLocator
 {
     public Task<ISagaId?> LocateSagaAsync(
         IDomainEvent domainEvent,

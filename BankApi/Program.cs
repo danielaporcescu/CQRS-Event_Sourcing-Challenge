@@ -23,6 +23,7 @@ builder.Services.AddEventFlow(ef => ef
     .ConfigurePostgreSql(postgres)
     .UsePostgreSqlEventStore()
     .UsePostgreSqlReadModel<AccountReadModel>()
+
     .AddSagas()
 );
 

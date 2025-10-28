@@ -58,9 +58,18 @@ public class BankController(CommandService commandService, QueryService querySer
 
     [HttpGet]
     [Route("accounts/{id}/history")]
-    public async Task<OkObjectResult> GetHistory([FromRoute] string id)
+    public async Task<IActionResult> GetHistory([FromRoute] string id)
     {
-        var accountInfo = await queryService.GetTransactionHistoryAsync(new AccountId(id), CancellationToken.None);
-        return Ok(accountInfo);
+        var history = await queryService.GetTransactionHistoryAsync(new AccountId(id), CancellationToken.None);
+        var dto = history.Select(x => new Transaction(
+           x.GetAggregateEvent(),
+           x.GetIdentity(),
+           x.AggregateSequenceNumber,
+           x.EventType,
+           x.Metadata,
+           x.Timestamp
+        )).ToList();
+
+        return Ok(dto.ToString());
     }
 }
