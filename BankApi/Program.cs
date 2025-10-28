@@ -14,6 +14,7 @@ var postgres = PostgreSqlConfiguration.New
         "User ID=postgres;Password=eventflow;Host=localhost;Port=5432;Database=eventflow;CommandTimeout=300;KeepAlive=300")
     .SetTransientRetryCount(3);
 
+builder.Services.AddHttpClient();
 builder.Services.AddOpenApi();
 builder.Services.AddLogging();
 builder.Services.AddControllers();
