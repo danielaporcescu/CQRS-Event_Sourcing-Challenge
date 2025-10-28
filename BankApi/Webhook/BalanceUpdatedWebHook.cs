@@ -3,7 +3,6 @@ using System.Text.Json;
 using BankApi.Aggregates;
 using BankApi.Events;
 using BankApi.Models;
-using BankApi.Services;
 using EventFlow.Aggregates;
 using EventFlow.Subscribers;
 

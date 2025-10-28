@@ -107,8 +107,7 @@ public class BankControllerTests
         var transfer = new Transfer(source.Id, target.Id, 50m);
         var transferResponse = await _client.PostAsync(Transfer, GetContent(transfer));
         transferResponse.IsSuccessStatusCode.Should().BeTrue();
-
-        // Check balances
+        
         var sourceBalanceResp = await _client.GetAsync(string.Format(GetBalance, source.Id));
         var targetBalanceResp = await _client.GetAsync(string.Format(GetBalance, target.Id));
 
@@ -132,10 +131,6 @@ public class BankControllerTests
     
         var response = await _client.GetAsync(string.Format(GetHistory, account.Id));
         response.IsSuccessStatusCode.Should().BeTrue();
-    
-        // var transactions = await response.Content.ReadFromJsonAsync<List<Transaction>>();
-        //
-        // var json = await response.Content.ReadAsStringAsync();
     }
 
     private StringContent GetContent(object data)

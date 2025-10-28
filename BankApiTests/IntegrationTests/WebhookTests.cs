@@ -41,8 +41,7 @@ public class BalanceUpdatedWebHookTests
         var domainEventMock = new Mock<IDomainEvent<AccountAggregate, AccountId, DepositEvent>>();
         domainEventMock.SetupGet(e => e.AggregateIdentity).Returns(accountId);
         domainEventMock.SetupGet(e => e.AggregateEvent).Returns(depositEvent);
-
-        // Act
+        
         await subscriber.HandleAsync(domainEventMock.Object, CancellationToken.None);
         
         Assert.That(capturedRequest!.Method, Is.EqualTo(HttpMethod.Post));
